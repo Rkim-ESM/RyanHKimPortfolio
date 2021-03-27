@@ -47,22 +47,22 @@
 
 #section1
 {
-	background-image:url('../image/uluru.jpg');
+	background-image:url('images/uluru.jpg');
 }
 
 #section2
 {
-	background-image:url('../image/eiffeltower.jpg');
+	background-image:url('images/eiffeltower.jpg');
 }
 
 #section3
 {
-	background-image:url('../image/empirestate.jpg');
+	background-image:url('images/empirestate.jpg');
 }
 
 #section4
 {
-	background-image:url('../image/greatwall.jpg');
+	background-image:url('images/greatwall.jpg');
 }
 
 .button

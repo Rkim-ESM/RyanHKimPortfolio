@@ -2414,22 +2414,22 @@
 
 #section1
 {
-	background-image:url('images/uluru.jpg');
+	background-image:'images/uluru.jpg';
 }
 
 #section2
 {
-	background-image:url('images/eiffeltower.jpg');
+	background-image:'images/eiffeltower.jpg';
 }
 
 #section3
 {
-	background-image:url('images/empirestate.jpg');
+	background-image:'images/empirestate.jpg';
 }
 
 #section4
 {
-	background-image:url('images/greatwall.jpg');
+	background-image:'images/greatwall.jpg';
 }
 
 .button

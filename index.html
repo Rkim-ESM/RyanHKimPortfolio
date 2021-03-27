@@ -6,108 +6,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<script type="text/javascript" src="assets/js/jquery-1.7.1.min.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function()
-			{
-
-				$('#scroll1').click(function()
-					{
-						navigate(0,1);
-					}
-				);
-
-				$('#scroll2').click(function()
-					{
-						navigate('-600',2);
-					}
-				);
-
-				$('#scroll3').click(function()
-					{
-						navigate('-1200',3);
-					}
-				);
-
-				$('#scroll4').click(function()
-					{
-						navigate('-1800',4);
-					}
-				);
-
-				$('.label').bind('mouseover', fadeIn);
-				$('.label').bind('mouseout', fadeOut);
-
-				$('#label').css("opacity", "0.7");
-			}
-				);
-
-				var currentPage = 1;
-
-				function navigate(position, page)
-				{
-					if(page != currentPage)
-					{
-						currentPage = page;
-
-						$('.label').unbind('mouseover', fadeIn);
-						$('.label').unbind('mouseout', fadeOut);
-
-						$('#scrollable').clearQueue();
-
-						$('#scrollable').queue(hideLabel);
-						$('#scrollable').queue(scroll(position));
-						$('#scrollable').queue(showLabel);
-					}
-				}
-
-				function scroll(position)
-				{
-					position = position + "px";
-
-					$('#scrollable').animate(
-						{left:position},
-						500,
-						null,
-						function()
-						{
-							$('#scrollable').dequeue();
-						});
-				}
-
-				function showLabel()
-				{
-					$('#label').animate(
-						{bottom:'100px'},
-						250,
-						function()
-						{
-							$('.label').bind('mouseover', fadeIn);
-							$('.label').bind('mouseout', fadeOut);
-						});
-				}
-
-				function hideLabel()
-				{
-					$('#label').animate(
-						{bottom:'0px'},
-						250,
-						null,
-						function()
-						{
-							$('#scrollable').dequeue();
-						});
-				}
-
-				function fadeOut()
-				{
-					$('#label').stop().fadeTo(250,0.7);
-				}
-
-				function fadeIn()
-				{
-					$('#label').stop().fadeTo(250,1);
-				}
-		</script>
 	</head>
 	
 	<body>
@@ -136,11 +34,6 @@
 										<img src="images/rkimfirefly.png" alt="" />
 										<h3>Nuclear Power Firefly Map</h3>
 									</a>
-									
-									<a href="images/rasterclass.pdf">
-										<h3>Shapefile classification</h3>
-									</a>
-										
 								</div>
 								
 							</section>	

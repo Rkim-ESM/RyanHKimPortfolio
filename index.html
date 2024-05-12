@@ -205,11 +205,11 @@
 
         // change info window on hover
         map.on('mousemove', (event) => {
-          const ghanadata-2ule7e = map.queryRenderedFeatures(event.point, {
+          const features = map.queryRenderedFeatures(event.point, {
             layers: ['ghanadata-2ule7e']
           });
           document.getElementById('pd').innerHTML = ghanadata-2ule7e.iso
-            ? `<h3>${ghanadata-2ule7e[0].properties.name}</h3><p><strong><em>${ghanadata-2ule7e[0].properties.density}</strong> people per square mile</em></p>`
+            ? `<h3>${features[0].properties.iso}</h3><p><strong><em>${features[0].properties.density}</strong> people per square mile</em></p>`
             : `<p>Hover over a state!</p>`;
         });
       });

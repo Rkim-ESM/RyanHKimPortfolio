@@ -37,12 +37,9 @@
             }
 
             #map {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                width: 100%;
-            }
-
+    width: 100%; /* Full width of the container */
+    height: 350px; /* Adjusted height to match the ArcGIS iframe */
+	}		
             .map-overlay {
                 position: absolute;
                 background: #fff;
@@ -143,9 +140,11 @@
             <script>
                 mapboxgl.accessToken = 'pk.eyJ1IjoicmhrMTQiLCJhIjoiY2x2YTh3Z2tqMTJvMjJrbGJhZGZzZmhoMiJ9.F1-7y-722aNLMQgc7VPTbQ';
                 const map = new mapboxgl.Map({
-                    container: 'map',
-                    style: 'mapbox://styles/rhk14/clw2s0wg201zm01q10mnn1m80l'
-                });
+        container: 'map', // container ID
+        style: 'mapbox://styles/rhk14/clw2s0wg201zm01q10mnn1m80l', // Style URL
+        center: [-95.7129, 37.0902], // Starting position [lng, lat]
+        zoom: 3 // Starting zoom
+    });
 
                 map.on('load', () => {
                     const layers = [

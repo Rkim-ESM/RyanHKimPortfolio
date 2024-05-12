@@ -1,45 +1,42 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>RyanHK Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+    <head>
+        <title>RyanHK Portfolio</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="assets/css/main.css" />
         <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
-		<style>
-		    *, *:before, *:after {
-			    box-sizing: border-box;
-		    }
-		    .column, .map-overlay {
-			    float: left;
-		    }
-
-		    .row:after, .map-overlay:after {
-			    content: "";
-			    display: table;
-			    clear: both;
-		    }
+        <style>
+            *, *:before, *:after {
+                box-sizing: border-box;
+            }
+            .column, .map-overlay {
+                float: left;
+            }
+            .row:after, .map-overlay:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
             body {
                 margin: 0;
                 padding: 0;
             }
-
             h2, h3 {
                 margin: 10px;
             }
-
             h3 {
                 font-size: 16px;
             }
-
             p {
                 margin: 10px;
             }
-
             #map {
-    width: 100%; /* Full width of the container */
-    height: 350px; /* Adjusted height to match the ArcGIS iframe */
-	}		
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+            }
             .map-overlay {
                 position: absolute;
                 background: #fff;
@@ -47,144 +44,149 @@
                 overflow: auto;
                 border-radius: 3px;
             }
-
-            #features {
+            #features, #legend {
                 top: 0;
-                height: 100px;
+                right: 0;
                 margin-top: 20px;
                 width: 250px;
-                right: 0;
-            }
-
-            #legend {
                 padding: 10px;
-                box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            }
+            #features {
+                height: 100px;
+            }
+            #legend {
                 line-height: 18px;
                 height: 150px;
                 margin-bottom: 40px;
                 width: 100px;
-                bottom: 0;
             }
-		</style>
-	</head>
-	
-	<body>
+            .legend-key {
+                display: inline-block;
+                border-radius: 20%;
+                width: 10px;
+                height: 10px;
+                margin-right: 5px;
+            }
+        </style>
+    </head>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    <body>
+        <!-- Wrapper -->
+        <div id="wrapper">
+            <!-- Header -->
+            <header id="header">
+                <span class="avatar"><img src="images/profile.jpg" alt="" /></span>
+                <h1><strong>Ryan Kim</strong></h1>
+                <p><strong>Portfolio of Work</strong></p>
+                <p>(Right click + open/save for detailed view)</p>
+                <ul class="icons">
+                    <li><a href="https://github.com/RKim-ESM" class="icon style2 fa-github"><span class="label">Github</span></a></li>
+                    <li><a href="mailto:rhk14@humboldt.edu" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+                </ul>
+            </header>
 
-				<!-- Header -->
-					<header id="header">
-						<span class="avatar"><img src="images/profile.jpg" alt="" /></span>
-						<h1><strong>Ryan Kim</strong>
-							<p><strong>Portfolio of Work</strong></p> <p>(Right click + open/save for detailed view)</p>
-						<ul class="icons">
-							<li><a href="https://github.com/RKim-ESM" class="icon style2 fa-github"><span class="label">Github</span></a></li>
-							<li><a href="mailto:rhk14@humboldt.edu" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
-						</ul>
-					</header>
-<br>
-				<!-- Main -->
-					<section id="main">
-						<p>Mapbox Map Samples</p>
-						<!-- Mapbox Map -->
-                        <div id="map"></div>
-                        <div class="map-overlay" id="features">
-                            <h2>US population density</h2>
-                            <div id="pd"><p>Hover over a state!</p></div>
-                        </div>
-                        <div class="map-overlay" id="legend"></div>
+            <!-- Main -->
+            <section id="main">
+                <p>Mapbox Map Samples</p>
+                <!-- Mapbox Map -->
+                <div id="map"></div>
+                <div class="map-overlay" id="features">
+                    <h2>GHI of Zambia, Tanzania, and Kenya</h2>
+                    <div id="pd"><p>Hover over a region!</p></div>
+                </div>
+                <div class="map-overlay" id="legend"></div>
 
-						<br><br><br>
+                <!-- Thumbnail/Maps -->
+                <section class="thumbnails">
+                    <div>
+                        <a href="images/Fantasy_Map.jpg">
+                            <img src="images/Fantasy_Map.jpg" width="150"/>
+                            <h3>Fantasy Map</h3>
+                        </a>
+                        <a href="images/Call_To_Action_Map.jpg">
+                            <img src="images/Call_To_Action_Map.jpg" width="150"/>
+                            <h3>Call to Action Map</h3>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="images/Terrain_Map.png">
+                            <img src="images/Terrain_Map.png"/>
+                            <h3>Terrain Map</h3>
+                        </a>
+                        <a href="images/Typography.png">
+                            <img src="images/Typography.png" width="150"/>
+                            <h3>Typography</h3>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="images/Hexbins.png">
+                            <img src="images/Hexbins.png"/>
+                            <h3>Hexbins</h3>
+                        </a>
+                        <a href="images/Generalizations.png">
+                            <img src="images/Generalizations.png"/>
+                            <h3>Generalization</h3>
+                        </a>
+                    </div>
+                </section>
+            </section>
+        </div>
 
-						<!-- Thumbnail/Maps -->
-							<section class="thumbnails">
-							    <div>
-							        <a href="images/Fantasy_Map.jpg">
-							            <img src="images/Fantasy_Map.jpg" width="150"/>
-							            <h3>Fantasy Map</h3>
-							        </a>
-							        <a href="images/Call_To_Action_Map.jpg">
-							            <img src="images/Call_To_Action_Map.jpg" width="150"/>
-							            <h3>Call to Action Map</h3>
-							        </a>
-							    </div>
-							    <div>
-							        <a href="images/Terrain_Map.png">
-							            <img src="images/Terrain_Map.png"/>
-							            <h3>Terrain Map</h3>
-							        </a>
-							        <a href="images/Typography.png">
-							            <img src="images/Typography.png" width="150"/>
-							            <h3>Typography</h3>
-							        </a>
-							    </div>
-							    <div>
-							        <a href="images/Hexbins.png">
-							            <img src="images/Hexbins.png"/>
-							            <h3>Hexbins</h3>
-							        </a>
-							        <a href="images/Generalizations.png">
-							            <img src="images/Generalizations.png"/>
-							            <h3>Generalization</h3>
-							        </a>
-							    </div>
-							</section>
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.poptrox.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoicmhrMTQiLCJhIjoiY2x2YTh3Z2tqMTJvMjJrbGJhZGZzZmhoMiJ9.F1-7y-722aNLMQgc7VPTbQ';
+            const map = new mapboxgl.Map({
+                container: 'map', // container ID
+                style: 'mapbox://styles/rhk14/clw2s0wg201zm01q10mnn1m80l', // Style URL
+                center: [-95.7129, 37.0902], // Starting position [lng, lat]
+                zoom: 3 // Starting zoom
+            });
 
-			<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/main.js"></script>
-            <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
-            <script>
-                mapboxgl.accessToken = 'pk.eyJ1IjoicmhrMTQiLCJhIjoiY2x2YTh3Z2tqMTJvMjJrbGJhZGZzZmhoMiJ9.F1-7y-722aNLMQgc7VPTbQ';
-                const map = new mapboxgl.Map({
-        container: 'map', // container ID
-        style: 'mapbox://styles/rhk14/clw2s0wg201zm01q10mnn1m80l', // Style URL
-        center: [-95.7129, 37.0902], // Starting position [lng, lat]
-        zoom: 3 // Starting zoom
-    });
+            map.on('load', () => {
+                const layers = [
+                    '0-10', '10-20', '20-50', '50-100', '100-200', '200-500', '500-1000', '1000+'
+                ];
+                const colors = [
+                    '#FFEDA0', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C', '#BD0026', '#800026'
+                ];
 
-                map.on('load', () => {
-                    const layers = [
-                        '0-10', '10-20', '20-50', '50-100', '100-200', '200-500', '500-1000', '1000+'
-                    ];
-                    const colors = [
-                        '#FFEDA0', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C', '#BD0026', '#800026'
-                    ];
+                // Create legend
+                const legend = document.getElementById('legend');
+                layers.forEach((layer, i) => {
+                    const color = colors[i];
+                    const item = document.createElement('div');
+                    const key = document.createElement('span');
+                    key.className = 'legend-key';
+                    key.style.backgroundColor = color;
 
-                    // Create legend
-                    const legend = document.getElementById('legend');
-                    layers.forEach((layer, i) => {
-                        const color = colors[i];
-                        const item = document.createElement('div');
-                        const key = document.createElement('span');
-                        key.className = 'legend-key';
-                        key.style.backgroundColor = color;
-
-                        const value = document.createElement('span');
-                        value.innerHTML = `${layer}`;
-                        item.appendChild(key);
-                        item.appendChild(value);
-                        legend.appendChild(item);
-                    });
-
-                    map.on('mousemove', (event) => {
-                        const states = map.queryRenderedFeatures(event.point, {
-                            layers: ['statedata']
-                        });
-                        document.getElementById('pd').innerHTML = states.length ?
-                            `<h3>${states[0].properties.name}</h3><p><strong><em>${states[0].properties.density}</strong> Solar Irradiance</em></p>` :
-                            `<p>Hover over a region!</p>`;
-                    });
-
-                    map.getCanvas().style.cursor = 'default';
-                    map.fitBounds([
-                        [-133.2421875, 16.972741],
-                        [-47.63671875, 52.696361]
-                    ]);
+                    const value = document.createElement('span');
+                    value.innerHTML = `${layer}`;
+                    item.appendChild(key);
+                    item.appendChild(value);
+                    legend.appendChild(item);
                 });
-            </script>
-	</body>
+
+                map.on('mousemove', (event) => {
+                    const states = map.queryRenderedFeatures(event.point, {
+                        layers: ['statedata']
+                    });
+                    document.getElementById('pd').innerHTML = states.length ?
+                        `<h3>${states[0].properties.name}</h3><p><strong><em>${states[0].properties.density}</strong> Solar Irradiance</em></p>` :
+                        `<p>Hover over a region!</p>`;
+                });
+
+                map.getCanvas().style.cursor = 'default';
+                map.fitBounds([
+                    [-133.2421875, 16.972741],
+                    [-47.63671875, 52.696361]
+                ]);
+            });
+        </script>
+    </body>
 </html>

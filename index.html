@@ -20,41 +20,47 @@
     display: flex;
     flex-direction: column;
     align-items: center; /* Centers content horizontally */
-    width: 100%; /* Full width of the viewport */
+    width: 100%; /* Ensures the wrapper is full width */
 }
 
-/* Style for the header to ensure it has full width and is visible */
+/* Header styles for visibility */
 header {
-    width: 100%; /* Full width to match the page layout */
-    text-align: center; /* Centering the text inside the header */
+    width: 100%; /* Ensures header takes full width */
+    text-align: center; /* Center text in the header */
 }
 
-/* Adjustments for the map container */
+/* Map container styles */
 #map {
     height: 350px; /* Fixed height for the map */
-    width: 80%; /* Adjust this to match the width of your other image containers */
-    margin: 20px 0; /* Top and bottom margin for spacing, removes side margins */
+    width: 80%; /* Width matching other image containers */
+    margin: 20px 0; /* Margin for top and bottom spacing */
+    position: relative; /* Needed for absolute positioning of overlays */
 }
 
-/* Ensures map overlays do not overlap with the header */
+/* Position overlays at the top of the map */
 .map-overlay {
     position: absolute;
-    top: 10px; /* Adjusts the top position to give space below the header */
-    right: 10px; /* Maintains a consistent right-hand margin */
-    background: #fff; /* Background color to maintain visibility over the map */
-    border-radius: 3px; /* Softens the corners of the overlay boxes */
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Subtle shadow for better visibility */
-    z-index: 1; /* Ensures overlays are above the map */
-    padding: 10px; /* Padding around the text in overlays */
+    top: 0; /* Position at the top of the map */
+    right: 0; /* Align to the right */
+    background: #fff; /* Background color for readability */
+    border-radius: 3px; /* Rounded corners */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Subtle shadow */
+    padding: 10px; /* Padding inside the overlays */
+    z-index: 2; /* Ensures overlays are above the map */
 }
 
-/* Additional styles for features and legend to manage size and positioning */
+/* Additional spacing and styling for features and legend */
 #features, #legend {
-    width: 250px; /* Fixed width for better control over layout */
+    min-width: 250px; /* Ensures a consistent width */
 }
 
 #legend {
-    height: 150px; /* Fixed height */
+    height: 150px; /* Fixed height for the legend */
+}
+
+/* Style for spacing below the map before the thumbnails */
+section#main {
+    margin-bottom: 40px; /* Adjust the bottom margin as needed */
 }
     .legend-key {
         display: inline-block;
@@ -135,53 +141,33 @@ header {
         <script src="assets/js/main.js"></script>
         <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
         <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoicmhrMTQiLCJhIjoiY2x3MnVuemhhMHFhcTJrcHZuZ3FoOWtxcCJ9.D8c30iWQVBQXaeqCsiTkRA';
-            const map = new mapboxgl.Map({
-                container: 'map', // container ID
-                style: 'mapbox://styles/rhk14/clw2s0wg201zm01q10mnn1m80', // Style URL
-                center: [-95.7129, 37.0902], // Starting position [lng, lat]
-                zoom: 3 // Starting zoom
-            });
+mapboxgl.accessToken = 'your-access-token';
+const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11', // Replace with your style URL
+    center: [-95.7129, 37.0902],
+    zoom: 3
+});
 
-            map.on('load', () => {
-                const layers = [
-                    '0-10', '10-20', '20-50', '50-100', '100-200', '200-500', '500-1000', '1000+'
-                ];
-                const colors = [
-                    '#FFEDA0', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C', '#BD0026', '#800026'
-                ];
+map.on('load', function() {
+    map.on('mousemove', 'ghanadata-2ule7e', function(e) {
+        if (e.features.length > 0) {
+            document.getElementById('pd').innerHTML = `<strong>${e.features[0].properties.name}</strong>: ${e.features[0].properties.description}`;
+        }
+    });
 
-                // Create legend
-                const legend = document.getElementById('legend');
-                layers.forEach((layer, i) => {
-                    const color = colors[i];
-                    const item = document.createElement('div');
-                    const key = document.createElement('span');
-                    key.className = 'legend-key';
-                    key.style.backgroundColor = color;
+    map.on('mouseleave', 'ghanadata-2ule7e', function() {
+        document.getElementById('pd').innerHTML = '<p>Hover over a region!</p>';
+    });
+});
 
-                    const value = document.createElement('span');
-                    value.innerHTML = `${layer}`;
-                    item.appendChild(key);
-                    item.appendChild(value);
-                    legend.appendChild(item);
-                });
+map.on('mouseenter', 'ghanadata-2ule7e', function() {
+    map.getCanvas().style.cursor = 'pointer';
+});
 
-                map.on('mousemove', (event) => {
-                    const states = map.queryRenderedFeatures(event.point, {
-                        layers: ['statedata']
-                    });
-                    document.getElementById('pd').innerHTML = states.length ?
-                        `<h3>${states[0].properties.name}</h3><p><strong><em>${states[0].properties.density}</strong> Solar Irradiance</em></p>` :
-                        `<p>Hover over a region!</p>`;
-                });
-
-                map.getCanvas().style.cursor = 'default';
-                map.fitBounds([
-                    [-133.2421875, 16.972741],
-                    [-47.63671875, 52.696361]
-                ]);
-            });
-        </script>
+map.on('mouseleave', 'ghanadata-2ule7e', function() {
+    map.getCanvas().style.cursor = '';
+});
+</script>
     </body>
 </html>

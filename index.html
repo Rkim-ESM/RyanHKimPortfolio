@@ -7,23 +7,6 @@
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
     <style>
-        body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        flex-direction: column;
-        background-image: url('images/bg2.jpg'); /* Add your image file here */
-        background-repeat: repeat; /* This will make the image repeat */
-    }
-
-        #wrapper {
-            width: 80vw; /* 80% of the viewport width */
-            max-width: 1000px;
-        }
-
         #header {
         background: url('images/profile.jpg') no-repeat center center; /* Center the image and do not repeat */
         background-size: cover; /* Cover the entire area of the header, may crop parts of the image */
@@ -35,6 +18,23 @@
         color: white;
         text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Enhance text visibility */
     }
+
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-image: url('images/background_image.png');
+        background-repeat: repeat;
+        height: 100vh;
+    }
+
+        #wrapper {
+            width: 80vw; /* 80% of the viewport width */
+            max-width: 1000px;
+        }
 
         #map {
             height: 50vh;

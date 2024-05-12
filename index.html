@@ -34,6 +34,17 @@
         margin: 10px;
       }
 
+      .map-overlay {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: #fff;
+        margin-right: 20px;
+        font-family: Arial, sans-serif;
+        overflow: auto;
+        border-radius: 3px;
+      }
+
       #map {
   position: relative; /* Changed from absolute to relative */
   height: 400px; /* Adjusted fixed height */
@@ -66,7 +77,6 @@
   height: 150px;
   padding: 10px;
 }
-
       .legend-key {
         display: inline-block;
         border-radius: 20%;
@@ -75,6 +85,7 @@
         margin-right: 5px;
       }
     </style>
+
   </head>
 
     <body>

@@ -3,24 +3,43 @@
 <head>
     <title>RyanHK Portfolio</title>
     <meta charset="utf-8" />
-    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        background-image: url('images/bg2.jpg'); /* Add your image file here */
+        background-repeat: repeat; /* This will make the image repeat */
+    }
+
+        #wrapper {
+            width: 80vw; /* 80% of the viewport width */
+            max-width: 1000px;
         }
 
+        #header {
+        background: url('images/profile.jpg') no-repeat center center; /* Center the image and do not repeat */
+        background-size: cover; /* Cover the entire area of the header, may crop parts of the image */
+        height: 200px; /* Set the height according to your preference */
+        width: 100%; /* Make sure the header spans the full width */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Enhance text visibility */
+    }
+
         #map {
-            height: 80vh; /* 80% of the viewport height */
-            width: 80vw; /* 80% of the viewport width */
-            position: relative; /* Needed for absolute positioning inside the div */
+            height: 50vh;
+            width: 100%;
+            position: relative;
         }
 
         .map-overlay {
@@ -31,7 +50,7 @@
             border-radius: 3px;
             padding: 10px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.10);
-            z-index: 10;
+            z-index: 1;
         }
 
         #features {
@@ -65,30 +84,30 @@
             margin-right: 5px;
         }
 
-        .thumbnails div {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 20px; /* Space between rows */
-        }
-    
-        .thumbnails img {
-        width: 150px; /* Fixed width for all images */
-        height: auto; /* Maintain aspect ratio */
-        border-radius: 5px; /* Optional: for rounded corners */
-        }
-    
-        @media (max-width: 600px) {
-        .thumbnails div {
-            flex-direction: column;
-            align-items: center;
+        .thumbnails {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
         }
 
-        .thumbnails img {
-            width: 100%; /* Take full width of the container */
-            max-width: 150px; /* But no more than 150px */
+        .thumbnail {
+            flex-basis: 45%;
+            margin-bottom: 20px;
+            text-align: center;
         }
-    }
-</style>
+
+        .thumbnail img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .thumbnail h4 {
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <div id="wrapper">
@@ -109,46 +128,45 @@
             </div>
             <div class="map-overlay" id="legend"></div>
         </div>
-        <br><br><br>
-        <!-- Thumbnail/Maps -->
         <section class="thumbnails">
-            <div>
+            <div class="thumbnail">
                 <a href="images/Fantasy_Map.jpg">
-                    <img src="images/Fantasy_Map.jpg" width="150"/>
+                    <img src="images/Fantasy_Map.jpg" alt="Fantasy Map"/>
                     <h4>Fantasy Map</h4>
                 </a>
+            </div>
+            <div class="thumbnail">
                 <a href="images/Call_To_Action_Map.jpg">
-                    <img src="images/Call_To_Action_Map.jpg" width="150"/>
+                    <img src="images/Call_To_Action_Map.jpg" alt="Call to Action Map"/>
                     <h4>Call to Action Map</h4>
                 </a>
             </div>
-            <div>
+            <div class="thumbnail">
                 <a href="images/Terrain_Map.png">
-                    <img src="images/Terrain_Map.png"/>
+                    <img src="images/Terrain_Map.png" alt="Terrain Map"/>
                     <h4>Terrain Map</h4>
                 </a>
+            </div>
+            <div class="thumbnail">
                 <a href="images/Typography.png">
-                    <img src="images/Typography.png" width="150"/>
+                    <img src="images/Typography.png" alt="Typography"/>
                     <h4>Typography</h4>
                 </a>
             </div>
-            <div>
+            <div class="thumbnail">
                 <a href="images/Hexbins.png">
-                    <img src="images/Hexbins.png"/>
+                    <img src="images/Hexbins.png" alt="Hexbins"/>
                     <h4>Hexbins</h4>
                 </a>
+            </div>
+            <div class="thumbnail">
                 <a href="images/Generalizations.png">
-                    <img src="images/Generalizations.png"/>
+                    <img src="images/Generalizations.png" alt="Generalization"/>
                     <h4>Generalization</h4>
                 </a>
             </div>
         </section>
     </div>
-
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.poptrox.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/main.js"></script>	
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoicmhrMTQiLCJhIjoiY2x3MnVuemhhMHFhcTJrcHZuZ3FoOWtxcCJ9.D8c30iWQVBQXaeqCsiTkRA';
         const map = new mapboxgl.Map({
@@ -182,11 +200,10 @@
             map.on('mousemove', function (event) {
                 const states = map.queryRenderedFeatures(event.point, { layers: ['ghanadata-2ule7e'] });
                 document.getElementById('pd').innerHTML = states.length ?
-                    `<h3>${states[0].properties.ghi_kwh_m2}</strong>  : GHI: kWh/m^2</em></p>` :
-                    `<p>Mouse over for region GHI</p>`;
+                    `<h3>${states[0].properties.ghi_kwh_m2}</h3> GHI: kWh/m^2` :
+                    `<p>Mouse over a region for GHI</p>`;
             });
         });
     </script>
 </body>
 </html>
-

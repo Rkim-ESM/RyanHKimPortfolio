@@ -103,8 +103,8 @@
                 <p>Mapbox Map Samples</p>
                 <div id="map"></div>
     <div class="map-overlay" id="features">
-      <h2>US population density</h2>
-      <div id="pd"><p>Hover over a state!</p></div>
+      <h2>GHI in Nigeria, Tanzania, and Zambia</h2>
+      <div id="pd"><p>Hover over a region!</p></div>
     </div>
     <div class="map-overlay" id="legend"></div>
                 <!-- Thumbnail/Maps -->
@@ -166,34 +166,14 @@
 
         // set map bounds to the continental US
         map.fitBounds([
-          [-133.2421875, 16.972741],
-          [-47.63671875, 52.696361]
+          [-25.360107, -35.815419],
+        [63.333, 37.3456353]
         ]);
 
         // define layer names
-        const layers = [
-          '0-10',
-          '10-20',
-          '20-50',
-          '50-100',
-          '100-200',
-          '200-500',
-          '500-1000',
-          '1000+'
-        ];
-        const colors = [
-          '#FFEDA0',
-          '#FED976',
-          '#FEB24C',
-          '#FD8D3C',
-          '#FC4E2A',
-          '#E31A1C',
-          '#BD0026',
-          '#800026'
-        ];
-
-        // create legend
-        const legend = document.getElementById('legend');
+        const layers = ['1510-1615', '1616-1720', '1721-1825', '1826-1930', '1931-2140', '2141-2350', '2351+'];
+      const colors = ['#f4fa52', '#fbec74', '#fee14d', '#f8d877', '#f8ad2a', '#f06819', '#fa1919'];
+      const legend = document.getElementById('legend');
 
         layers.forEach((layer, i) => {
           const color = colors[i];
@@ -210,13 +190,11 @@
         });
 
         // change info window on hover
-        map.on('mousemove', (event) => {
-          const features = map.queryRenderedFeatures(event.point, {
-            layers: ['ghanadata-2ule7e']
-          });
-          document.getElementById('pd').innerHTML = ghanadata-2ule7e.iso
-            ? `<h3>${features[0].properties.iso}</h3><p><strong><em>${features[0].properties.density}</strong> people per square mile</em></p>`
-            : `<p>Hover over a state!</p>`;
+        map.on('mousemove', function (event) {
+        const states = map.queryRenderedFeatures(event.point, { layers: ['ghanadata-2ule7e'] });
+        document.getElementById('pd').innerHTML = states.length ?
+          `<h3>${states[0].properties.ghi_kwh_m2}</strong>  : GHI: kWh/m^2</em></p>` :
+          `<p>Mouse over for region GHI</p>`;
         });
       });
     </script>

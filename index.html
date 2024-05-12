@@ -7,41 +7,21 @@
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
     <style>
+        <style>
         body {
-        margin: 0;
-        padding: 0;
-        background-image: url('images/bg2.jpg');
-        background-repeat: repeat;
-        font-family: Arial, sans-serif;
-    }
-
-    #wrapper {
-        width: 80vw; /* Adjust this to control the max width of the content */
-        margin: auto; /* Center the wrapper horizontally */
-        max-width: 1000px;
-    }
-
-    #header {
-        background: url('images/profile.jpg') no-repeat center center;
-        background-size: cover;
-        height: 200px; /* Adjust if you want more or less of the image shown */
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    }
-
-        #wrapper {
-            width: 80vw; /* 80% of the viewport width */
-            max-width: 1000px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white; /* Set text color to white globally */
         }
 
         #map {
-            height: 50vh;
-            width: 100%;
-            position: relative;
+            height: 80vh; /* 80% of the viewport height */
+            width: 80vw; /* 80% of the viewport width */
+            position: relative; /* Needed for absolute positioning inside the div */
         }
 
         .map-overlay {
@@ -52,7 +32,7 @@
             border-radius: 3px;
             padding: 10px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.10);
-            z-index: 1;
+            z-index: 10;
         }
 
         #features {
@@ -74,6 +54,10 @@
             font-size: 18px;
         }
 
+        h3 {
+            font-size: 16px;
+        }
+
         p {
             margin: 10px 0;
         }
@@ -86,28 +70,27 @@
             margin-right: 5px;
         }
 
+        /* Style for the map thumbnail sections */
         .thumbnails {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
-            margin-top: 20px;
+            justify-content: space-between; /* Distributes space evenly */
         }
 
-        .thumbnail {
-            flex-basis: 45%;
-            margin-bottom: 20px;
-            text-align: center;
+        .thumbnails div {
+            flex: 1 1 30%; /* Flex grow, flex shrink, flex basis */
+            margin: 10px;
+            text-align: center; /* Center the content */
         }
 
-        .thumbnail img {
-            width: 100%;
-            max-width: 150px;
+        .thumbnails a {
+            color: white; /* Change link color to white */
+            text-decoration: none; /* Optional: removes underline */
+        }
+
+        .thumbnails img {
+            max-width: 100%; /* Makes the image responsive */
             height: auto;
-            border-radius: 5px;
-        }
-
-        .thumbnail h4 {
-            margin-top: 5px;
         }
     </style>
 </head>

@@ -34,39 +34,38 @@
         margin: 10px;
       }
 
-      .map-overlay {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        background: #fff;
-        margin-right: 20px;
-        font-family: Arial, sans-serif;
-        overflow: auto;
-        border-radius: 3px;
-      }
-
       #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-      }
+  position: relative; /* Changed from absolute to relative */
+  height: 400px; /* Adjusted fixed height */
+  width: 80%; /* Matches the width of other content */
+  margin: 20px auto; /* Centering the map within the page */
+}
 
-      #features {
-        top: 0;
-        height: 100px;
-        margin-top: 20px;
-        width: 250px;
-      }
+.map-overlay {
+  position: absolute;
+  background: #fff;
+  margin-right: 20px;
+  font-family: Arial, sans-serif;
+  overflow: auto;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
 
-      #legend {
-        padding: 10px;
-        box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
-        line-height: 18px;
-        height: 150px;
-        margin-bottom: 40px;
-        width: 100px;
-      }
+#features {
+  top: 0;
+  right: 0; /* Adjusted to align right */
+  width: 250px;
+  height: 100px;
+  margin-top: 10px; /* Adjusted margin for alignment */
+}
+
+#legend {
+  bottom: 10px; /* Ensured it's at the bottom of the map */
+  right: 0; /* Align right to the edge of the map */
+  width: 100px;
+  height: 150px;
+  padding: 10px;
+}
 
       .legend-key {
         display: inline-block;

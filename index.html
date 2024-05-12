@@ -72,7 +72,31 @@
             height: 10px;
             margin-right: 5px;
         }
-    </style>
+
+        .thumbnails div {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px; /* Space between rows */
+        }
+    
+        .thumbnails img {
+        width: 150px; /* Fixed width for all images */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 5px; /* Optional: for rounded corners */
+        }
+    
+        @media (max-width: 600px) {
+        .thumbnails div {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .thumbnails img {
+            width: 100%; /* Take full width of the container */
+            max-width: 150px; /* But no more than 150px */
+        }
+    }
+</style>
 </head>
 <body>
     <div id="wrapper">

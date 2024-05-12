@@ -4,38 +4,32 @@
     <title>RyanHK Portfolio</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
     <style>
         body {
-        margin: 0;
-        padding: 0;
-        background-image: url('images/bg2.jpg');
-        background-repeat: repeat;
-        font-family: Arial, sans-serif;
-    }
-
-    #wrapper {
-        width: 80vw; /* Adjust this to control the max width of the content */
-        margin: auto; /* Center the wrapper horizontally */
-        max-width: 1000px;
-    }
-
-    #header {
-        background: url('images/profile.jpg') no-repeat center center;
-        background-size: cover;
-        height: 200px; /* Adjust if you want more or less of the image shown */
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    }
+            margin: 0;
+            padding: 0;
+            background-image: url('images/bg2.jpg');
+            background-repeat: repeat;
+            font-family: Arial, sans-serif;
+        }
 
         #wrapper {
-            width: 80vw; /* 80% of the viewport width */
+            width: 80vw;
+            margin: auto;
             max-width: 1000px;
+        }
+
+        #header {
+            background: url('images/profile.jpg') no-repeat center center;
+            background-size: cover;
+            height: 200px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
 
         #map {
@@ -47,7 +41,6 @@
         .map-overlay {
             position: absolute;
             background: #fff;
-            font-family: Arial, sans-serif;
             overflow: auto;
             border-radius: 3px;
             padding: 10px;
@@ -55,27 +48,22 @@
             z-index: 1;
         }
 
-        #features {
-            top: 10px;
-            left: 10px;
+        #features, #legend {
+            position: absolute;
             width: calc(25% - 20px);
             max-height: 150px;
+            padding: 10px;
+            background: white;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.10);
         }
 
-        #legend {
-            bottom: 10px;
-            right: 10px;
-            width: calc(15% - 20px);
-            max-height: 150px;
-        }
+        #features { top: 10px; left: 10px; }
+        #legend { bottom: 10px; right: 10px; }
 
-        h2, h3 {
+        h2, h3, p {
             margin: 0 0 10px 0;
             font-size: 18px;
-        }
-
-        p {
-            margin: 10px 0;
         }
 
         .legend-key {
@@ -87,15 +75,14 @@
         }
 
         .thumbnails {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            color: white; /* Make thumbnail text white */
         }
 
         .thumbnail {
-            flex-basis: 45%;
-            margin-bottom: 20px;
             text-align: center;
         }
 
@@ -116,11 +103,10 @@
         <header id="header">
             <h1>Ryan Kim's Portfolio</h1>
         </header>
-        <br><br><br>
         <div id="map">
             <div class="map-overlay" id="features">
                 <h2>GHI in Nigeria, Tanzania, and Zambia</h2>
-                <div id="pd"><p>Hover over a region!</p></div>
+                <p>Hover over a region!</p>
             </div>
             <div class="map-overlay" id="legend"></div>
         </div>
@@ -163,6 +149,7 @@
             </div>
         </section>
     </div>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoicmhrMTQiLCJhIjoiY2x3MnVuemhhMHFhcTJrcHZuZ3FoOWtxcCJ9.D8c30iWQVBQXaeqCsiTkRA';
         const map = new mapboxgl.Map({
@@ -194,7 +181,9 @@
             });
 
             map.on('mousemove', function (event) {
-                const states = map.queryRenderedFeatures(event.point, { layers: ['ghanadata-2ule7e'] });
+                const states = map.queryRenderedFeatures(event.point, {
+                    layers: ['ghanadata-2ule7e']
+                });
                 document.getElementById('pd').innerHTML = states.length ?
                     `<h3>${states[0].properties.ghi_kwh_m2}</h3> GHI: kWh/m^2` :
                     `<p>Mouse over a region for GHI</p>`;

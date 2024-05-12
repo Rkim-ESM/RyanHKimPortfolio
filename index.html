@@ -52,15 +52,6 @@
             font-size: 18px;
         }
 
-        h4 {
-            font-size: 16px;
-        }
-        
-        h5 {
-        margin: 10px;
-        font-size: 18px;
-        }
-
         p {
             margin: 10px 0;
         }
@@ -71,6 +62,18 @@
             width: 10px;
             height: 10px;
             margin-right: 5px;
+        }
+
+        .thumbnails div {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px; /* Space between rows */
+        }
+    
+        .thumbnails img {
+        width: 150px; /* Fixed width for all images */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 5px; /* Optional: for rounded corners */
         }
     
         @media (max-width: 600px) {
@@ -105,38 +108,37 @@
             </div>
             <div class="map-overlay" id="legend"></div>
         </div>
-        <br><br><br>
         
         <!-- Thumbnail/Maps -->
         <section class="thumbnails">
             <div>
                 <a href="images/Fantasy_Map.jpg">
                     <img src="images/Fantasy_Map.jpg" width="150"/>
-                    <h5>Fantasy Map</h5>
+                    <h4>Fantasy Map</h4>
                 </a>
                 <a href="images/Call_To_Action_Map.jpg">
                     <img src="images/Call_To_Action_Map.jpg" width="150"/>
-                    <h5>Call to Action Map</h5>
+                    <h4>Call to Action Map</h4>
                 </a>
             </div>
             <div>
                 <a href="images/Terrain_Map.png">
                     <img src="images/Terrain_Map.png"/>
-                    <h5>Terrain Map</h5>
+                    <h4>Terrain Map</h4>
                 </a>
                 <a href="images/Typography.png">
                     <img src="images/Typography.png" width="150"/>
-                    <h5>Typography</h5>
+                    <h4>Typography</h4>
                 </a>
             </div>
             <div>
                 <a href="images/Hexbins.png">
                     <img src="images/Hexbins.png"/>
-                    <h5>Hexbins</h5>
+                    <h4>Hexbins</h4>
                 </a>
                 <a href="images/Generalizations.png">
                     <img src="images/Generalizations.png"/>
-                    <h5>Generalization</h5>
+                    <h4>Generalization</h4>
                 </a>
             </div>
         </section>

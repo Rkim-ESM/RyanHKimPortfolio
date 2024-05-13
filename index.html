@@ -4,33 +4,37 @@
     <title>RyanHK Portfolio</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            background-image: url('images/bg2.jpg');
-            background-repeat: repeat;
-            font-family: Arial, sans-serif;
-        }
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        background-image: url('images/bg2.jpg'); /* Add your image file here */
+        background-repeat: repeat; /* This will make the image repeat */
+    }
 
         #wrapper {
-            width: 80vw;
-            margin: auto;
+            width: 80vw; /* 80% of the viewport width */
             max-width: 1000px;
         }
 
         #header {
-            background: url('images/profile.jpg') no-repeat center center;
-            background-size: cover;
-            height: 200px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        }
+        background: url('images/profile.jpg') no-repeat center center; /* Center the image and do not repeat */
+        background-size: cover; /* Cover the entire area of the header, may crop parts of the image */
+        height: 200px; /* Set the height according to your preference */
+        width: 100%; /* Make sure the header spans the full width */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Enhance text visibility */
+    }
 
         #map {
             height: 50vh;
@@ -41,6 +45,7 @@
         .map-overlay {
             position: absolute;
             background: #fff;
+            font-family: Arial, sans-serif;
             overflow: auto;
             border-radius: 3px;
             padding: 10px;
@@ -48,22 +53,27 @@
             z-index: 1;
         }
 
-        #features, #legend {
-            position: absolute;
+        #features {
+            top: 10px;
+            left: 10px;
             width: calc(25% - 20px);
             max-height: 150px;
-            padding: 10px;
-            background: white;
-            border-radius: 3px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.10);
         }
 
-        #features { top: 10px; left: 10px; }
-        #legend { bottom: 10px; right: 10px; }
+        #legend {
+            bottom: 10px;
+            right: 10px;
+            width: calc(15% - 20px);
+            max-height: 150px;
+        }
 
-        h2, h3, p {
+        h2, h3 {
             margin: 0 0 10px 0;
             font-size: 18px;
+        }
+
+        p {
+            margin: 10px 0;
         }
 
         .legend-key {
@@ -75,20 +85,21 @@
         }
 
         .thumbnails {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 20px;
-            color: white; /* Make thumbnail text white */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
         }
 
         .thumbnail {
+            flex-basis: 45%;
+            margin-bottom: 20px;
             text-align: center;
         }
 
         .thumbnail img {
             width: 100%;
-            max-width: 200px;
+            max-width: 150px;
             height: auto;
             border-radius: 5px;
         }
@@ -101,13 +112,19 @@
 <body>
     <div id="wrapper">
         <header id="header">
-            <h1>Ryan Kim's Portfolio</h1>
+            <span class="avatar"><img src="images/profile.jpg" alt="" /></span>
+            <h1><strong>Ryan Kim</strong></h1>
+            <p><strong>Portfolio of Work</strong></p>
+            <p>(Right click + open/save for detailed view)</p>
+            <ul class="icons">
+                <li><a href="https://github.com/RKim-ESM" class="icon style2 fa-github"><span class="label">Github</span></a></li>
+                <li><a href="mailto:rhk14@humboldt.edu" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+            </ul>
         </header>
-        <br><br><br>
         <div id="map">
             <div class="map-overlay" id="features">
                 <h2>GHI in Nigeria, Tanzania, and Zambia</h2>
-                <p>Hover over a region!</p>
+                <div id="pd"><p>Hover over a region!</p></div>
             </div>
             <div class="map-overlay" id="legend"></div>
         </div>
@@ -150,7 +167,6 @@
             </div>
         </section>
     </div>
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoicmhrMTQiLCJhIjoiY2x3MnVuemhhMHFhcTJrcHZuZ3FoOWtxcCJ9.D8c30iWQVBQXaeqCsiTkRA';
         const map = new mapboxgl.Map({
@@ -182,9 +198,7 @@
             });
 
             map.on('mousemove', function (event) {
-                const states = map.queryRenderedFeatures(event.point, {
-                    layers: ['ghanadata-2ule7e']
-                });
+                const states = map.queryRenderedFeatures(event.point, { layers: ['ghanadata-2ule7e'] });
                 document.getElementById('pd').innerHTML = states.length ?
                     `<h3>${states[0].properties.ghi_kwh_m2}</h3> GHI: kWh/m^2` :
                     `<p>Mouse over a region for GHI</p>`;

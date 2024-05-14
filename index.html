@@ -7,7 +7,6 @@
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
     <style>
-        <style>
         body {
             margin: 0;
             padding: 0;
@@ -15,13 +14,13 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            height: 100vh;
+            min-height: 100vh;
             background-image: url('images/bg2.jpg'); /* Add your image file here */
-            background-repeat: repeat; /* This will make the image repeat */
+            background-repeat: no-repeat;
             background-size: cover;
             color: white; /* Set text color to white globally */
         }
-        
+
         #wrapper {
             width: 100vw;
             text-align: center;
@@ -43,6 +42,7 @@
         #map {
             height: 80vh; /* 80% of the viewport height */
             width: 80vw; /* 80% of the viewport width */
+            margin: 20px auto; /* Center the map horizontally */
             position: relative; /* Needed for absolute positioning inside the div */
         }
 
@@ -127,7 +127,6 @@
                 <li><a href="mailto:rhk14@humboldt.edu" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
             </ul>
         </header>
-        <br><br><br>
         <div id="map">
             <div class="map-overlay" id="features">
                 <h2>GHI in Nigeria, Tanzania, and Zambia</h2>

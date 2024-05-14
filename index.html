@@ -8,42 +8,38 @@
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 100vh;
-            background-image: url('images/bg2.jpg'); /* Add your image file here */
-            background-repeat: no-repeat;
-            background-size: cover;
-            color: white; /* Set text color to white globally */
-        }
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        background-image: url('images/bg2.jpg'); /* Add your image file here */
+        background-repeat: repeat; /* This will make the image repeat */
+    }
 
         #wrapper {
-            width: 100vw;
-            text-align: center;
+            width: 80vw; /* 80% of the viewport width */
+            max-width: 1000px;
         }
 
         #header {
-            background: url('images/profile.jpg') no-repeat center center; /* Center the image and do not repeat */
-            background-size: cover; /* Cover the entire area of the header, may crop parts of the image */
-            height: 200px; /* Set the height according to your preference */
-            width: 100%; /* Make sure the header spans the full width */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Enhance text visibility */
-        }
+        background: url('images/profile.jpg') no-repeat center center; /* Center the image and do not repeat */
+        background-size: cover; /* Cover the entire area of the header, may crop parts of the image */
+        height: 200px; /* Set the height according to your preference */
+        width: 100%; /* Make sure the header spans the full width */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Enhance text visibility */
+    }
 
         #map {
-            height: 80vh; /* 80% of the viewport height */
-            width: 80vw; /* 80% of the viewport width */
-            margin: 20px auto; /* Center the map horizontally */
-            position: relative; /* Needed for absolute positioning inside the div */
+            height: 50vh;
+            width: 100%;
+            position: relative;
         }
 
         .map-overlay {
@@ -54,30 +50,31 @@
             border-radius: 3px;
             padding: 10px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.10);
-            z-index: 10;
+            z-index: 1;
         }
 
         #features {
-    top: 10px;
-    left: 10px;
-    width: calc(25% - 20px);
-    max-height: 150px;
-    z-index: 15; /* Ensure the features overlay has a higher z-index */
-}
+            top: 10px;
+            left: 10px;
+            width: calc(25% - 20px);
+            max-height: 150px;
+        }
 
-#legend {
-    bottom: 10px;
-    right: 10px;
-    width: calc(15% - 20px);
-    max-height: 150px;
-    z-index: 15; /* Ensure the legend overlay has a higher z-index */
-}
+        #legend {
+            bottom: 10px;
+            right: 10px;
+            width: calc(15% - 20px);
+            max-height: 150px;
+        }
 
-#features h2, #features p,
-#legend h2, #legend p {
-    z-index: 20; /* Ensure the text within the overlays has an even higher z-index */
-}
+        h2, h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
 
+        p {
+            margin: 10px 0;
+        }
 
         .legend-key {
             display: inline-block;
@@ -87,33 +84,35 @@
             margin-right: 5px;
         }
 
-        /* Style for the map thumbnail sections */
         .thumbnails {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between; /* Distributes space evenly */
+            justify-content: space-around;
+            margin-top: 20px;
         }
 
-        .thumbnails div {
-            flex: 1 1 30%; /* Flex grow, flex shrink, flex basis */
-            margin: 10px;
-            text-align: center; /* Center the content */
+        .thumbnail {
+            flex-basis: 45%;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .thumbnails a {
-            color: white; /* Change link color to white */
-            text-decoration: none; /* Optional: removes underline */
-        }
-
-        .thumbnails img {
-            max-width: 100%; /* Makes the image responsive */
+        .thumbnail img {
+            width: 100%;
+            max-width: 150px;
             height: auto;
+            border-radius: 5px;
+        }
+
+        .thumbnail h4 {
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
     <div id="wrapper">
         <header id="header">
+            <span class="avatar"><img src="images/profile.jpg" alt="" /></span>
             <h1><strong>Ryan Kim</strong></h1>
             <p><strong>Portfolio of Work</strong></p>
             <p>(Right click + open/save for detailed view)</p>

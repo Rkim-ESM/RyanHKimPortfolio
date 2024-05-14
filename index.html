@@ -58,18 +58,25 @@
         }
 
         #features {
-            top: 10px;
-            left: 10px;
-            width: calc(25% - 20px);
-            max-height: 150px;
-        }
+    top: 10px;
+    left: 10px;
+    width: calc(25% - 20px);
+    max-height: 150px;
+    z-index: 15; /* Ensure the features overlay has a higher z-index */
+}
 
-        #legend {
-            bottom: 10px;
-            right: 10px;
-            width: calc(15% - 20px);
-            max-height: 150px;
-        }
+#legend {
+    bottom: 10px;
+    right: 10px;
+    width: calc(15% - 20px);
+    max-height: 150px;
+    z-index: 15; /* Ensure the legend overlay has a higher z-index */
+}
+
+#features h2, #features p,
+#legend h2, #legend p {
+    z-index: 20; /* Ensure the text within the overlays has an even higher z-index */
+}
 
         h2, h3 {
             margin: 0 0 10px 0;

@@ -8,33 +8,39 @@
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
     <style>
         body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        flex-direction: column;
-        background-image: url('images/bg2.jpg'); /* Add your image file here */
-        background-repeat: repeat; /* This will make the image repeat */
-    }
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-image: url('images/bg2.jpg'); /* Add your image file here */
+            background-repeat: repeat; /* This will make the image repeat */
+        }
 
         #wrapper {
             width: 80vw; /* 80% of the viewport width */
             max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #header {
-        background: url('images/profile.jpg') no-repeat center center; /* Center the image and do not repeat */
-        background-size: cover; /* Cover the entire area of the header, may crop parts of the image */
-        height: 200px; /* Set the height according to your preference */
-        width: 100%; /* Make sure the header spans the full width */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Enhance text visibility */
-    }
+            background: url('images/profile.jpg') no-repeat center center; /* Center the image and do not repeat */
+            background-size: cover; /* Cover the entire area of the header, may crop parts of the image */
+            height: 200px; /* Set the height according to your preference */
+            width: 100%; /* Make sure the header spans the full width */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Enhance text visibility */
+        }
+
+        #header .content {
+            text-align: center;
+        }
 
         #map {
             height: 50vh;
@@ -112,14 +118,16 @@
 <body>
     <div id="wrapper">
         <header id="header">
-            <span class="avatar"><img src="images/profile.jpg" alt="" /></span>
-            <h1><strong>Ryan Kim</strong></h1>
-            <p><strong>Portfolio of Work</strong></p>
-            <p>(Right click + open/save for detailed view)</p>
-            <ul class="icons">
-                <li><a href="https://github.com/RKim-ESM" class="icon style2 fa-github"><span class="label">Github</span></a></li>
-                <li><a href="mailto:rhk14@humboldt.edu" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
-            </ul>
+            <div class="content">
+                <span class="avatar"><img src="images/profile.jpg" alt="" /></span>
+                <h1><strong>Ryan Kim</strong></h1>
+                <p><strong>Portfolio of Work</strong></p>
+                <p>(Right click + open/save for detailed view)</p>
+                <ul class="icons">
+                    <li><a href="https://github.com/RKim-ESM" class="icon style2 fa-github"><span class="label">Github</span></a></li>
+                    <li><a href="mailto:rhk14@humboldt.edu" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+                </ul>
+            </div>
         </header>
         <div id="map">
             <div class="map-overlay" id="features">

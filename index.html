@@ -58,11 +58,13 @@
         #header-map h2, #writing-samples-header h2 {
             color: #ffffff; /* White color for visibility */
             background-color: #333; /* Dark background for contrast */
-            padding: 10px;
-            width: 100%; /* Full width */
+            padding: 10px 20px; /* uniform padding: 10px top/bottom, 20px left/right */
+            width: auto; /* Adjust width to fit content or use auto for automatic sizing */
             text-align: left; /* Align text to the left */
             border-radius: 5px; /* Rounded corners for aesthetic */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+            display: inline-block; /* Makes the block only as wide as the content + padding */
+            margin: 0; /* Remove default margins if any */
         }
 
         #map {
